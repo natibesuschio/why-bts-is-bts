@@ -25,10 +25,6 @@ export default function ClosingSection() {
         >
           <div className="w-20 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent mx-auto mb-12" />
 
-          <p className="text-[var(--color-accent)]/50 text-xs tracking-[0.3em] uppercase font-mono mb-8">
-            {closingReflection.subtitle}
-          </p>
-
           <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold text-white/90 leading-tight">
             {closingReflection.title}
           </h2>

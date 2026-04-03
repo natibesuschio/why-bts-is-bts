@@ -54,7 +54,7 @@ export default function Intro() {
         >
           {[
             { number: "8", label: "Eras", sublabel: "of artistic evolution" },
-            { number: "20+", label: "Songs", sublabel: "deconstructed" },
+            { number: "250+", label: "Songs", sublabel: "deconstructed" },
             { number: "10+", label: "Years", sublabel: "of cultural impact" },
           ].map((stat, i) => (
             <motion.div
