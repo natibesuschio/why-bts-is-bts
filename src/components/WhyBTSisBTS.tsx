@@ -1,43 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { principles } from "@/data/principles";
-import { useEffect, useRef, useState } from "react";
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-    },
-  },
-};
-
-export default function WhatMakesBTSBTS() {
-  const gridRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(gridRef, { once: true, amount: 0.15 });
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    if (isInView) {
-      setHasAnimated(true);
-    }
-  }, [isInView]);
-
+export default function whatMakesBTSBTS() {
   return (
     <section id="why-bts" className="relative py-32 sm:py-40 px-6">
       <div className="absolute inset-0 bg-radial-glow opacity-30" />
@@ -50,31 +16,25 @@ export default function WhatMakesBTSBTS() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-[var(--color-accent)]/60 text-xs tracking-[0.3em] uppercase font-mono mb-6">
-            The Answer
-          </p>
-
+          <p className="text-[var(--color-accent)]/60 text-xs tracking-[0.3em] uppercase font-mono mb-6">The Answer</p>
           <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gradient leading-[1.1]">
             What makes BTS so special?
           </h2>
-
           <p className="mt-8 text-[var(--color-muted)] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             Six principles that explain how seven people from Seoul became the most significant cultural force of their generation.
           </p>
         </motion.div>
 
-        <motion.div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
-          variants={containerVariants}
-          initial="hidden"
-          animate={hasAnimated ? "show" : "hidden"}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {principles.map((principle, i) => (
-            <div
+            <motion.div
               key={principle.title}
               className="group relative border border-white/[0.06] bg-white/[0.01] hover:border-[var(--color-accent)]/15 transition-all duration-700"
-          >
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+            >
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="relative p-6 sm:p-8">
@@ -88,17 +48,13 @@ export default function WhatMakesBTSBTS() {
                   {principle.title}
                 </h3>
 
-                <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">
-                  {principle.description}
-                </p>
+                <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">{principle.description}</p>
 
-                <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">
-                  {principle.detail}
-                </p>
+                <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">{principle.detail}</p>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
