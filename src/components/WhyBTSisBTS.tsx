@@ -11,8 +11,8 @@ export default function whatMakesBTSBTS() {
       <div className="relative max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0}}
+          whileInView={{ opacity: 1}}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
