@@ -65,6 +65,9 @@ export default function ClosingSection() {
         <p className="mt-2 text-[var(--color-muted)]/20 text-[10px] font-mono">
           This is a fan project. All rights belong to their respective owners.
         </p>
+        <p className="mt-4 text-[var(--color-accent)]/40 text-xs font-mono tracking-widest">
+          natttvfx
+        </p>
       </motion.footer>
     </section>
   );
