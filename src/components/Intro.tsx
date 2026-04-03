@@ -2,6 +2,18 @@
 
 import { motion } from "framer-motion";
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
+};
+
+const cardVariants = {
+  hidden: { y: 18 },
+  visible: { y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 export default function Intro() {
   return (
     <section id="intro" className="relative py-32 sm:py-40 px-6">
@@ -10,7 +22,7 @@ export default function Intro() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
           className="text-center"
         >
           <div className="inline-block mb-8">
@@ -21,49 +33,34 @@ export default function Intro() {
             This is not just a discography.
           </h2>
 
-          <motion.p
-            className="mt-8 text-[var(--color-muted)] text-lg sm:text-xl leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
+          <p className="mt-8 text-[var(--color-muted)] text-lg sm:text-xl leading-relaxed max-w-3xl mx-auto">
             This is the evolution of identity, pain, ambition, artistry, and meaning. A decade-long journey through
             sound, story, and self-discovery — told era by era, song by song.
-          </motion.p>
+          </p>
 
-          <motion.p
-            className="mt-6 text-[var(--color-muted)]/60 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
+          <p className="mt-6 text-[var(--color-muted)]/60 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             Scroll through the timeline below. Click into songs. Read the stories behind the music. Understand why
             seven people from Seoul became the most significant cultural force of their generation.
-          </motion.p>
+          </p>
         </motion.div>
 
-        {/* Stats cards */}
+        {/* Stats cards — stagger from parent, no individual whileInView */}
         <motion.div
           className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
         >
           {[
             { number: "8", label: "Eras", sublabel: "of artistic evolution" },
             { number: "250+", label: "Songs", sublabel: "deconstructed" },
             { number: "12+", label: "Years", sublabel: "of cultural impact" },
-          ].map((stat, i) => (
+          ].map((stat) => (
             <motion.div
               key={stat.label}
+              variants={cardVariants}
               className="relative group p-8 border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.03] transition-all duration-500"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <p className="text-4xl sm:text-5xl font-bold text-gradient font-[var(--font-display)]">{stat.number}</p>

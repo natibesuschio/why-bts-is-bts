@@ -3,7 +3,19 @@
 import { motion } from "framer-motion";
 import { principles } from "@/data/principles";
 
-export default function whatMakesBTSBTS() {
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+  },
+};
+
+const cardVariants = {
+  hidden: { y: 20 },
+  visible: { y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+export default function WhyBTSisBTS() {
   return (
     <section id="why-bts" className="relative py-32 sm:py-40 px-6">
       <div className="absolute inset-0 bg-radial-glow opacity-30" />
@@ -25,15 +37,19 @@ export default function whatMakesBTSBTS() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        {/* Cards — stagger from parent, no individual whileInView */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {principles.map((principle, i) => (
             <motion.div
               key={principle.title}
+              variants={cardVariants}
               className="group relative border border-white/[0.06] bg-white/[0.01] hover:border-[var(--color-accent)]/15 transition-all duration-700"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
@@ -54,7 +70,7 @@ export default function whatMakesBTSBTS() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
