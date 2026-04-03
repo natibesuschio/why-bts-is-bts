@@ -1,15 +1,42 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { principles } from "@/data/principles";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+    },
+  },
+};
 
 export default function WhatMakesBTSBTS() {
-  const [mounted, setMounted] = useState(false);
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(gridRef, { once: true, amount: 0.15 });
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    if (isInView) {
+      setHasAnimated(true);
+    }
+  }, [isInView]);
 
   return (
     <section id="why-bts" className="relative py-32 sm:py-40 px-6">
@@ -36,67 +63,43 @@ export default function WhatMakesBTSBTS() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {principles.map((principle, i) =>
-            mounted ? (
-              <motion.div
-                key={principle.title}
-                className="group relative border border-white/[0.06] bg-white/[0.01] hover:border-[var(--color-accent)]/15 transition-all duration-700"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <motion.div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+          variants={containerVariants}
+          initial="hidden"
+          animate={hasAnimated ? "show" : "hidden"}
+        >
+          {principles.map((principle, i) => (
+            <motion.div
+              key={principle.title}
+              variants={cardVariants}
+              className="group relative border border-white/[0.06] bg-white/[0.01] hover:border-[var(--color-accent)]/15 transition-all duration-700"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                <div className="relative p-6 sm:p-8">
-                  <div className="mb-4">
-                    <span className="text-[var(--color-accent)]/30 text-[10px] font-mono">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <h3 className="font-[var(--font-display)] text-2xl sm:text-3xl font-semibold text-white/90 group-hover:text-gradient transition-all duration-500">
-                    {principle.title}
-                  </h3>
-
-                  <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">
-                    {principle.description}
-                  </p>
-
-                  <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">
-                    {principle.detail}
-                  </p>
+              <div className="relative p-6 sm:p-8">
+                <div className="mb-4">
+                  <span className="text-[var(--color-accent)]/30 text-[10px] font-mono">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
-              </motion.div>
-            ) : (
-              <div
-                key={principle.title}
-                className="group relative border border-white/[0.06] bg-white/[0.01]"
-              >
-                <div className="relative p-6 sm:p-8">
-                  <div className="mb-4">
-                    <span className="text-[var(--color-accent)]/30 text-[10px] font-mono">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
 
-                  <h3 className="font-[var(--font-display)] text-2xl sm:text-3xl font-semibold text-white/90">
-                    {principle.title}
-                  </h3>
+                <h3 className="font-[var(--font-display)] text-2xl sm:text-3xl font-semibold text-white/90 group-hover:text-gradient transition-all duration-500">
+                  {principle.title}
+                </h3>
 
-                  <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">
-                    {principle.description}
-                  </p>
+                <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">
+                  {principle.description}
+                </p>
 
-                  <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">
-                    {principle.detail}
-                  </p>
-                </div>
+                <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">
+                  {principle.detail}
+                </p>
               </div>
-            )
-          )}
-        </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
