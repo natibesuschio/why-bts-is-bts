@@ -1,18 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { principles } from "@/data/principles";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { y: 20 },
-  visible: { y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export default function WhyBTSisBTS() {
