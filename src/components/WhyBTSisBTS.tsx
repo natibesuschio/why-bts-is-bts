@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { principles } from "@/data/principles";
 
-export default function WhyBTSisBTS() {
+export default function whatMakesBTSBTS() {
   return (
     <section id="why-bts" className="relative py-32 sm:py-40 px-6">
       <div className="absolute inset-0 bg-radial-glow opacity-30" />
@@ -18,7 +18,7 @@ export default function WhyBTSisBTS() {
         >
           <p className="text-[var(--color-accent)]/60 text-xs tracking-[0.3em] uppercase font-mono mb-6">The Answer</p>
           <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gradient leading-[1.1]">
-            Why BTS is BTS
+            What makes BTS so special?
           </h2>
           <p className="mt-8 text-[var(--color-muted)] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             Six principles that explain how seven people from Seoul became the most significant cultural force of their generation.
