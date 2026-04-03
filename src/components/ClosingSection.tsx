@@ -6,15 +6,11 @@ import { closingReflection } from "@/data/principles";
 export default function ClosingSection() {
   return (
     <section className="relative py-32 sm:py-40 px-6 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[var(--color-accent)]/[0.03] to-[#09090b]" />
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)",
-          }}
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)" }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 10, repeat: Infinity }}
         />
@@ -54,14 +50,11 @@ export default function ClosingSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 1 }}
           >
-            <p className="text-[var(--color-muted)]/30 text-sm font-mono tracking-wide">
-              7
-            </p>
+            <p className="text-[var(--color-muted)]/30 text-sm font-mono tracking-wide">7</p>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Footer */}
       <motion.footer
         className="relative mt-32 text-center"
         initial={{ opacity: 0 }}

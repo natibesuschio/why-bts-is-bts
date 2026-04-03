@@ -14,17 +14,12 @@ export default function Navigation() {
       const scrollY = window.scrollY;
       setIsVisible(scrollY > window.innerHeight * 0.8);
 
-      const eraElements = eras.map((era) => ({
-        id: era.id,
-        element: document.getElementById(era.id),
-      }));
-
-      for (let i = eraElements.length - 1; i >= 0; i--) {
-        const el = eraElements[i].element;
+      for (let i = eras.length - 1; i >= 0; i--) {
+        const el = document.getElementById(eras[i].id);
         if (el) {
           const rect = el.getBoundingClientRect();
           if (rect.top <= window.innerHeight / 3) {
-            setActiveEra(eraElements[i].id);
+            setActiveEra(eras[i].id);
             break;
           }
         }
@@ -35,19 +30,14 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToEra = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileOpen(false);
-  };
-
-  const scrollToSection = (id: string) => {
+  const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMobileOpen(false);
   };
 
   return (
     <>
-      {/* Desktop sidebar nav */}
+      {/* Desktop sidebar */}
       <AnimatePresence>
         {isVisible && (
           <motion.nav
@@ -58,11 +48,7 @@ export default function Navigation() {
             transition={{ duration: 0.4 }}
           >
             {eras.map((era) => (
-              <button
-                key={era.id}
-                onClick={() => scrollToEra(era.id)}
-                className="group flex items-center gap-3"
-              >
+              <button key={era.id} onClick={() => scrollTo(era.id)} className="group flex items-center gap-3">
                 <span
                   className={`text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${
                     activeEra === era.id
@@ -84,10 +70,7 @@ export default function Navigation() {
 
             <div className="mt-4 w-4 h-px bg-white/10" />
 
-            <button
-              onClick={() => scrollToSection("why-bts")}
-              className="group flex items-center gap-3"
-            >
+            <button onClick={() => scrollTo("why-bts")} className="group flex items-center gap-3">
               <span className="text-[10px] font-mono tracking-wider uppercase text-white/0 group-hover:text-white/40 transition-all duration-300 opacity-0 group-hover:opacity-100">
                 Why
               </span>
@@ -109,33 +92,16 @@ export default function Navigation() {
           >
             <div className="bg-[#09090b]/90 backdrop-blur-md border-b border-white/[0.06]">
               <div className="flex items-center justify-between px-4 py-3">
-                <span className="text-xs font-mono tracking-wider text-white/50 uppercase">
-                  Why BTS is BTS
-                </span>
+                <span className="text-xs font-mono tracking-wider text-white/50 uppercase">Why BTS is BTS</span>
                 <button
                   onClick={() => setIsMobileOpen(!isMobileOpen)}
                   className="text-white/60 hover:text-white/90 transition-colors p-1"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     {isMobileOpen ? (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                     ) : (
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M4 6h16M4 12h16M4 18h16"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
                     )}
                   </svg>
                 </button>
@@ -154,22 +120,20 @@ export default function Navigation() {
                       {eras.map((era) => (
                         <button
                           key={era.id}
-                          onClick={() => scrollToEra(era.id)}
+                          onClick={() => scrollTo(era.id)}
                           className={`block w-full text-left py-2 px-3 text-sm transition-colors ${
                             activeEra === era.id
                               ? "text-[var(--color-accent)] bg-[var(--color-accent)]/[0.05]"
                               : "text-white/50 hover:text-white/80"
                           }`}
                         >
-                          <span className="font-mono text-[10px] text-white/30 mr-3">
-                            {era.year}
-                          </span>
+                          <span className="font-mono text-[10px] text-white/30 mr-3">{era.year}</span>
                           {era.name}
                         </button>
                       ))}
                       <div className="h-px bg-white/[0.06] my-2" />
                       <button
-                        onClick={() => scrollToSection("why-bts")}
+                        onClick={() => scrollTo("why-bts")}
                         className="block w-full text-left py-2 px-3 text-sm text-white/50 hover:text-white/80 transition-colors"
                       >
                         Why BTS is BTS

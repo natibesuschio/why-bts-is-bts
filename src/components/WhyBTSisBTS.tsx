@@ -6,7 +6,6 @@ import { principles } from "@/data/principles";
 export default function WhyBTSisBTS() {
   return (
     <section id="why-bts" className="relative py-32 sm:py-40 px-6">
-      {/* Background glow */}
       <div className="absolute inset-0 bg-radial-glow opacity-30" />
 
       <div className="relative max-w-6xl mx-auto">
@@ -17,15 +16,12 @@ export default function WhyBTSisBTS() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-[var(--color-accent)]/60 text-xs tracking-[0.3em] uppercase font-mono mb-6">
-            The Answer
-          </p>
+          <p className="text-[var(--color-accent)]/60 text-xs tracking-[0.3em] uppercase font-mono mb-6">The Answer</p>
           <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gradient leading-[1.1]">
             Why BTS is BTS
           </h2>
           <p className="mt-8 text-[var(--color-muted)] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-            Six principles that explain how seven people from Seoul became the
-            most significant cultural force of their generation.
+            Six principles that explain how seven people from Seoul became the most significant cultural force of their generation.
           </p>
         </motion.div>
 
@@ -39,11 +35,10 @@ export default function WhyBTSisBTS() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
             >
-              {/* Hover glow */}
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="relative p-6 sm:p-8">
-                <div className="flex items-start justify-between mb-4">
+                <div className="mb-4">
                   <span className="text-[var(--color-accent)]/30 text-[10px] font-mono">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -53,13 +48,9 @@ export default function WhyBTSisBTS() {
                   {principle.title}
                 </h3>
 
-                <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">
-                  {principle.description}
-                </p>
+                <p className="mt-3 text-[var(--color-accent)]/60 text-sm italic">{principle.description}</p>
 
-                <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">
-                  {principle.detail}
-                </p>
+                <p className="mt-5 text-[var(--color-muted)]/60 text-sm leading-relaxed">{principle.detail}</p>
               </div>
             </motion.div>
           ))}

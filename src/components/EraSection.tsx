@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { Era } from "@/data/eras";
 import SongCard from "./SongCard";
 import ChangedEverything from "./ChangedEverything";
+import EraImage from "./EraImage";
 
 export default function EraSection({ era, index }: { era: Era; index: number }) {
   const isEven = index % 2 === 0;
@@ -17,62 +18,76 @@ export default function EraSection({ era, index }: { era: Era; index: number }) 
         </span>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6">
-        {/* Era header */}
-        <motion.div
-          className={`relative ${isEven ? "" : "sm:text-right"}`}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className={`flex items-center gap-4 mb-4 ${isEven ? "" : "sm:justify-end"}`}>
-            <span className="text-[var(--color-accent)]/50 text-xs font-mono tracking-widest">
-              {era.period}
-            </span>
-            <div className="h-px flex-1 max-w-[60px] bg-[var(--color-accent)]/20" />
-          </div>
-
-          <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold text-white/90 leading-[1.1]">
-            {era.name}
-          </h2>
-
-          <div className={`mt-4 flex items-center gap-3 ${isEven ? "" : "sm:justify-end"}`}>
-            <span className="inline-block px-3 py-1 text-[10px] tracking-[0.15em] uppercase font-mono border border-white/[0.08] text-[var(--color-muted)]/60 bg-white/[0.02]">
-              {era.mood}
-            </span>
-          </div>
-
-          <motion.p
-            className={`mt-8 text-white/60 text-xl sm:text-2xl font-light leading-relaxed max-w-3xl ${
-              isEven ? "" : "sm:ml-auto"
-            }`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Editorial layout: image + header side by side on desktop */}
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start ${!isEven ? "lg:[direction:rtl]" : ""}`}>
+          {/* Image column */}
+          <motion.div
+            className="lg:[direction:ltr]"
+            initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
           >
-            {era.description}
-          </motion.p>
-        </motion.div>
+            <EraImage
+              src={era.image}
+              alt={era.imageAlt}
+              overlay="dark"
+              className="w-full aspect-[4/3] lg:aspect-[3/4]"
+            />
+          </motion.div>
 
-        {/* Narrative */}
-        <motion.div
-          className="mt-12 relative"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ delay: 0.1, duration: 0.7 }}
-        >
-          <div className="pl-6 border-l border-white/[0.06]">
-            <p className="text-[var(--color-muted)]/70 text-sm sm:text-base leading-[1.8]">
-              {era.narrative}
-            </p>
+          {/* Text column */}
+          <div className="lg:[direction:ltr]">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-[var(--color-accent)]/50 text-xs font-mono tracking-widest">{era.period}</span>
+                <div className="h-px flex-1 max-w-[60px] bg-[var(--color-accent)]/20" />
+              </div>
+
+              <h2 className="font-[var(--font-display)] text-4xl sm:text-5xl font-bold text-white/90 leading-[1.1]">
+                {era.name}
+              </h2>
+
+              <div className="mt-4">
+                <span className="inline-block px-3 py-1 text-[10px] tracking-[0.15em] uppercase font-mono border border-white/[0.08] text-[var(--color-muted)]/60 bg-white/[0.02]">
+                  {era.mood}
+                </span>
+              </div>
+
+              <motion.p
+                className="mt-6 text-white/60 text-lg font-light leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                {era.description}
+              </motion.p>
+            </motion.div>
+
+            {/* Narrative */}
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.1, duration: 0.7 }}
+            >
+              <div className="pl-5 border-l border-white/[0.06]">
+                <p className="text-[var(--color-muted)]/70 text-sm leading-[1.8]">{era.narrative}</p>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Songs */}
-        <div className="mt-14">
+        <div className="mt-16">
           <motion.p
             className="text-[var(--color-muted)]/40 text-[10px] tracking-[0.3em] uppercase font-mono mb-6"
             initial={{ opacity: 0 }}
@@ -95,6 +110,7 @@ export default function EraSection({ era, index }: { era: Era; index: number }) 
           <ChangedEverything
             title={era.changedEverything.title}
             description={era.changedEverything.description}
+            image={era.changedEverything.image}
           />
         )}
       </div>

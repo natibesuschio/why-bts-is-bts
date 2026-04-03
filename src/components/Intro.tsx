@@ -28,9 +28,8 @@ export default function Intro() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            This is the evolution of identity, pain, ambition, artistry, and
-            meaning. A decade-long journey through sound, story, and
-            self-discovery — told era by era, song by song.
+            This is the evolution of identity, pain, ambition, artistry, and meaning. A decade-long journey through
+            sound, story, and self-discovery — told era by era, song by song.
           </motion.p>
 
           <motion.p
@@ -40,13 +39,12 @@ export default function Intro() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Scroll through the timeline below. Click into songs. Read the
-            stories behind the music. Understand why seven people from Seoul
-            became the most significant cultural force of their generation.
+            Scroll through the timeline below. Click into songs. Read the stories behind the music. Understand why
+            seven people from Seoul became the most significant cultural force of their generation.
           </motion.p>
         </motion.div>
 
-        {/* Decorative cards */}
+        {/* Stats cards */}
         <motion.div
           className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
           initial={{ opacity: 0, y: 30 }}
@@ -55,13 +53,9 @@ export default function Intro() {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           {[
-            { number: "7", label: "Eras", sublabel: "of artistic evolution" },
+            { number: "8", label: "Eras", sublabel: "of artistic evolution" },
             { number: "20+", label: "Songs", sublabel: "deconstructed" },
-            {
-              number: "10+",
-              label: "Years",
-              sublabel: "of cultural impact",
-            },
+            { number: "10+", label: "Years", sublabel: "of cultural impact" },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -72,15 +66,9 @@ export default function Intro() {
               transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <p className="text-4xl sm:text-5xl font-bold text-gradient font-[var(--font-display)]">
-                {stat.number}
-              </p>
-              <p className="mt-2 text-white/80 text-sm tracking-wide uppercase font-mono">
-                {stat.label}
-              </p>
-              <p className="mt-1 text-[var(--color-muted)]/50 text-xs">
-                {stat.sublabel}
-              </p>
+              <p className="text-4xl sm:text-5xl font-bold text-gradient font-[var(--font-display)]">{stat.number}</p>
+              <p className="mt-2 text-white/80 text-sm tracking-wide uppercase font-mono">{stat.label}</p>
+              <p className="mt-1 text-[var(--color-muted)]/50 text-xs">{stat.sublabel}</p>
             </motion.div>
           ))}
         </motion.div>
