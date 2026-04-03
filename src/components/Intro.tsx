@@ -1,15 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.12, delayChildren: 0.05 },
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { y: 18 },
   visible: { y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
