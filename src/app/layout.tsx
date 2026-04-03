@@ -11,7 +11,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Why BTS is BTS",
+  title: "The Essence of BTS",
   description:
     "Not just a group. A story, a philosophy, a cultural force. An immersive journey through the evolution of BTS.",
 };
