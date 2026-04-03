@@ -11,8 +11,8 @@ export default function whatMakesBTSBTS() {
       <div className="relative max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-20"
-          initial={{ opacity: 0}}
-          whileInView={{ opacity: 1}}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
@@ -30,8 +30,8 @@ export default function whatMakesBTSBTS() {
             <motion.div
               key={principle.title}
               className="group relative border border-white/[0.06] bg-white/[0.01] hover:border-[var(--color-accent)]/15 transition-all duration-700"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1}}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
             >
