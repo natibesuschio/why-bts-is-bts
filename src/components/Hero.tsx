@@ -67,7 +67,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
             >
-              Why BTS
+              What makes BTS
             </motion.span>
             <motion.span
               className="block mt-2 text-white/90"
@@ -75,7 +75,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
             >
-              is BTS
+              so special?
             </motion.span>
           </h1>
 
