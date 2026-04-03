@@ -71,11 +71,10 @@ export default function WhatMakesBTSBTS() {
           animate={hasAnimated ? "show" : "hidden"}
         >
           {principles.map((principle, i) => (
-            <motion.div
+            <div
               key={principle.title}
-              variants={cardVariants}
               className="group relative border border-white/[0.06] bg-white/[0.01] hover:border-[var(--color-accent)]/15 transition-all duration-700"
-            >
+          >
               <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="relative p-6 sm:p-8">
